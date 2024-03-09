@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动生成数字</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {  
+            font-family: 'Arial', sans-serif;  
+            background-color: #f5f5f5;  
+            margin: 0;  
+            padding: 0;  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            height: 100vh; /* 使内容垂直居中 */  
+        }  
+          
+        .container {  
+            text-align: center;  
+            background-color: #fff;  
+            padding: 100px;  
+            border-radius: 10px;  
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+        }  
+          
+        h1 {  
+            margin-bottom: 20px;  
+        }  
+          
+        form {  
+            display: flex;  
+            flex-direction: column;  
+            align-items: center;  
+            margin-bottom: 20px;  
+        }  
+          
+        label {  
+            margin-bottom: 5px;  
+            display: block;  
+        }  
+          
+        input[type="number"] {  
+            padding: 5px;  
+            font-size: 16px;  
+            border-radius: 5px;  
+            border: 1px solid #ccc;  
+        }  
+          
+        button[type="submit"] {  
+            margin-top: 10px;  
+            padding: 10px 20px;  
+            font-size: 16px;  
+            color: #fff;  
+            background-color: #4CAF50; /* 绿色 */  
+            border: none;  
+            border-radius: 5px;  
+            cursor: pointer;  
+        }  
+          
+        button[type="submit"]:hover {  
+            background-color: #45a049; /* 更深的绿色 */  
+        }  
+          
+        .result {  
+            font-size: 18px;  
+            margin: 0;  
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>购物车任选</h1>
+        <form id="numberForm">
+            <label for="maxNum">购物车产品数量:</label>
+            <input type="number" id="maxNum" min="1" value="100" required>
+            <button type="submit">产品所在位置</button>
+        </form>
+        <p id="result" class="result"></p>
+    </div>
+    <script src="script.js"></script>
+
+    <script>
+        document.getElementById('numberForm').addEventListener('submit', function(event) {  
+            event.preventDefault(); // 阻止表单默认的提交行为  
+            var maxNumInput = document.getElementById('maxNum');  
+            var max = parseInt(maxNumInput.value, 10);  
+            if (isNaN(max) || max < 1) {  
+                alert('请输入一个有效的最大数字。');  
+                maxNumInput.focus(); // 将焦点移回输入框以便用户修正  
+                return;  
+            }  
+            var min = 1;  
+            var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;  
+            document.getElementById('result').textContent = '选中产品: ' + randomNum;  
+        });
+    </script>
+</body>
+
+</html>
